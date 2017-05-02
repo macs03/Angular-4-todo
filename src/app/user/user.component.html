@@ -1,0 +1,48 @@
+<h1>
+  {{title}} {{name}}
+</h1>
+<p>
+  <strong>email: </strong> <span>{{email}}</span>
+</p>
+<p>
+  <strong>Address: </strong> {{address.street}} {{address.city}}, {{address.country}}
+</p>
+
+<button (click)="toogleHobbies()" type="button"> {{showHobbies ? "Hide Hobbies" : "Show Hobbies"}}</button>
+
+<div *ngIf="showHobbies">
+  <h3>
+    Hobbies:
+  </h3>
+  <ul>
+    <li *ngFor="let hobby of hobbies, let i= index">{{hobby}} <button (click)="deleteHobby(i)">X</button></li>
+  </ul>
+  <form (submit)="addHobby(hobby.value)">
+    <label for="hobbie">New hobbie</label><br />
+    <input type="text" name="hobbie" #hobby>
+  </form>
+</div>
+<hr />
+<h3>Edit user</h3>
+<form>
+  <label for="name">Name</label><br />
+  <input type="text" name="name" [(ngModel)]="name">
+  <br />
+  <label for="email">Email</label><br />
+  <input type="text" name="email" [(ngModel)]="email">
+  <br />
+  <label for="street">Street</label><br />
+  <input type="text" name="address.street" [(ngModel)]="address.street">
+  <br />
+  <label for="city">City</label><br />
+  <input type="text" name="address.city" [(ngModel)]="address.city">
+  <br />
+  <label for="country">Country</label><br />
+  <input type="text" name="address.country" [(ngModel)]="address.country">
+</form>
+<hr />
+<h3>Todos:</h3>
+<div *ngFor="let todo of todos">
+  <strong>Title: </strong><span>{{todo.title}}</span> <br />
+  <strong>{{todo.completed ? "Completed" : "Pending"}}</strong>
+</div>
